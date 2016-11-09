@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `item`
 --
 
-CREATE TABLE IF NOT EXISTS `item` (
+CREATE TABLE IF NOT EXISTS `itemTable` (
   `foodid` int(11) NOT NULL,
   `expirydate` date NOT NULL,
   `category` text NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `item` (
 -- Table structure for table `message`
 --
 
-CREATE TABLE IF NOT EXISTS `message` (
+CREATE TABLE IF NOT EXISTS `messageTable` (
   `messageid` int(11) NOT NULL,
   `sender` int(11) NOT NULL,
   `receiver` int(11) NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `message` (
 -- Table structure for table `request`
 --
 
-CREATE TABLE IF NOT EXISTS `request` (
+CREATE TABLE IF NOT EXISTS `requestTable` (
   `requestid` int(11) NOT NULL,
   `requester` int(11) NOT NULL,
   `foodid` int(11) NOT NULL,
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `request` (
 -- Table structure for table `user`
 --
 
-CREATE TABLE IF NOT EXISTS `user` (
+CREATE TABLE IF NOT EXISTS `userTable` (
   `userid` int(11) NOT NULL,
   `username` text NOT NULL,
   `password` text NOT NULL,
