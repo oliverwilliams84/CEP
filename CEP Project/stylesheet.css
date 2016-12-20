@@ -1,0 +1,22 @@
+.social {
+  margin-top: 0.33em;
+}
+
+.navbar {
+  background-color: #4DB6AC;
+}
+
+#phone {
+  margin-top: 0.33em;
+  font-size: 1.5em;
+  color: white;
+}
+
+#name {
+  font-size: 2em;
+}
+
+.navbar {
+  border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+}
