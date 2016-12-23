@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `itemTable` (
   `active` tinyint(1) NOT NULL,
   `hidden` tinyint(1) NOT NULL,  
   PRIMARY KEY (`foodid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `messageTable` (
   `message` text NOT NULL,
   `time` TIMESTAMP NOT NULL,
   PRIMARY KEY (`messageid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `userMessageTable` (
   `sender` int(11) NOT NULL,
   `receiver` int(11) NOT NULL,
   PRIMARY KEY (`messageid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `requestMessageTable` (
   `sender` int(11) NOT NULL,
   `requestid` int(11) NOT NULL,
   PRIMARY KEY (`messageid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `chatTable` (
   `user1seen` TIMESTAMP,
   `user2seen` TIMESTAMP,
   PRIMARY KEY (`user1`,`user2`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `requestTable` (
   `foodid` int(11) NOT NULL,
   `accepted` tinyint(1) NOT NULL,  
   PRIMARY KEY (`requestid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -156,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `userTable` (
   `picture` text,
   `email` text,
   PRIMARY KEY (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 --
@@ -174,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `authTable` (
   `authToken` text NOT NULL,
   `expirDate` DATE NOT NULL,
   PRIMARY KEY (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
