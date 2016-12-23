@@ -6,4 +6,4 @@
  * Time: 17:19
  */
 
-echo "123";
+require_once "database.php";
