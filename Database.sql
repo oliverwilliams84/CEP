@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2016 at 06:18 PM
+-- Generation Time: Dec 23, 2016 at 06:48 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -106,6 +106,16 @@ CREATE TABLE `requesttable` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `test`
+--
+
+CREATE TABLE `test` (
+  `test` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `usermessagetable`
 --
 
@@ -176,6 +186,12 @@ ALTER TABLE `requesttable`
   ADD KEY `foodid` (`foodid`);
 
 --
+-- Indexes for table `test`
+--
+ALTER TABLE `test`
+  ADD PRIMARY KEY (`test`);
+
+--
 -- Indexes for table `usermessagetable`
 --
 ALTER TABLE `usermessagetable`
@@ -190,6 +206,24 @@ ALTER TABLE `usertable`
   ADD PRIMARY KEY (`userid`);
 
 --
+-- AUTO_INCREMENT for dumped tables
+--
+
+ALTER TABLE `test`
+  MODIFY `test` int(11) NOT NULL AUTO_INCREMENT;
+--
+ALTER TABLE `usertable`
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT;
+  
+ALTER TABLE `messagetable`
+  MODIFY `messageid` int(11) NOT NULL AUTO_INCREMENT;
+  
+ALTER TABLE `requesttable`
+  MODIFY `requestid` int(11) NOT NULL AUTO_INCREMENT;
+  
+ALTER TABLE `itemtable`
+  MODIFY `foodid` int(11) NOT NULL AUTO_INCREMENT;
+
 -- Constraints for dumped tables
 --
 

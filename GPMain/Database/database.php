@@ -1,4 +1,6 @@
 <?php
+require_once "MySQL_DataMapper.php";
+
 function getPDO() {
     $servername = "mysql: host=127.0.0.1;dbname=gpmain;port=3306";
     $username = "gptest";
@@ -14,30 +16,6 @@ function getPDO() {
     }
 
     return $conn;
-}
-
-class MySQL_DataMapper
-{
-    private $table = 'gpmain';
-
-    private $pdo;
-
-    public function __construct($pdo)
-    {
-        $this->pdo = $pdo;
-    }
-
-    public function fetchUserById($id)
-    {
-        $query = "SELECT * FROM `{$this->table}` WHERE `id` =:id";
-        $stmt = $this->pdo->prepare($query);
-
-        $stmt->execute(array(
-            ':id' => $id
-        ));
-
-        return $stmt->fetch();
-    }
 }
 
 //function execQuery($inputStr, $params) {
