@@ -2,6 +2,7 @@
 
 class MySQL_DataMapper
 {
+    //Provides a data wrapper service for database interactions
 
     /** @var PDO pdo */
     private $pdo;
@@ -9,6 +10,16 @@ class MySQL_DataMapper
     public function __construct($pdo)
     {
         $this->pdo = $pdo;
+    }
+
+    public function getFoodItemsByUserID($id) // TODO
+    {
+        return false;
+    }
+
+    public function addNewFoodItem() //TODO
+    {
+        return false;
     }
 
     //Never call directly, simply inserts values. Use request handler
@@ -52,11 +63,6 @@ class MySQL_DataMapper
         }
         $stmt = NULL;
         return $result;
-    }
-
-    public function addNewFoodItem() //TODO
-    {
-        return false;
     }
 
     public function getUserMessagesByID($id)
@@ -124,11 +130,6 @@ class MySQL_DataMapper
         return $result;
     }
 
-    public function getFoodItemsByUserID($id) // TODO
-    {
-
-    }
-
     public function addNewRequest($requester, $foodid)
     {
         $query = "INSERT INTO requesttable (requester, foodid) VALUES (:req, :food)";
@@ -141,7 +142,7 @@ class MySQL_DataMapper
                 ':food' => $foodid
             ));
         } catch (PDOException $e) {
-            if (DEBUG) echo 'Adding new user failed: ' . $e->getMessage();
+            if (DEBUG) echo 'Adding new request failed: ' . $e->getMessage();
             $result = false;
         }
         $stmt = NULL;
@@ -162,7 +163,7 @@ class MySQL_DataMapper
                 ':reqid' => $requestID
             ));
         } catch (PDOException $e) {
-            if (DEBUG) echo 'Adding new user failed: ' . $e->getMessage();
+            if (DEBUG) echo 'Adding new request message failed: ' . $e->getMessage();
             $result = false;
         }
         $stmt = NULL;
@@ -183,8 +184,29 @@ class MySQL_DataMapper
                 ':state' => $state
             ));
         } catch (PDOException $e) {
-            if (DEBUG) echo 'Adding new user failed: ' . $e->getMessage();
+            if (DEBUG) echo 'Set request state failed: ' . $e->getMessage();
             $result = false;
+        }
+        $stmt = NULL;
+        return $result;
+    }
+
+    public function getRequestsByUserID($id)
+    {
+        $query = "SELECT `requestid`, `foodid`, `accepted`
+                    FROM `requesttable`
+                    WHERE `requestid` = :id";
+        $result = NULL;
+        try {
+            $stmt = $this->pdo->prepare($query);
+
+            $stmt->execute(array(
+                ':id' => $id
+            ));
+
+            $result = $stmt->fetchAll();
+        } catch (PDOException $e) {
+            if (DEBUG) echo 'Getting requests by ID failed: ' . $e->getMessage();
         }
         $stmt = NULL;
         return $result;

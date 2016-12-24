@@ -2,4 +2,4 @@
 
 define('DEBUG', true);
 
-require_once "Database/database.php";
+require_once "backend/database.php";
