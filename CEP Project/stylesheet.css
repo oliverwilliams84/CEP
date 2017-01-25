@@ -4,10 +4,6 @@ body {
   position: static;
 }
 
-/*img {
- -webkit-filter: blur(7px);
-}*/
-
 .inner {
   background-color: rgba(255,255,255,1);
   padding: 1.5em;
@@ -15,6 +11,48 @@ body {
 
 .social {
   margin-top: 0.33em;
+}
+
+.quotation {
+  font-size: 2em;
+}
+
+input {
+  margin-bottom: 0.8em;
+}
+
+.centre {
+  text-align: center;
+}
+
+/*.fill {
+  max-width: auto;
+  max-height: 100%;
+}*/
+
+.fill-left-img {
+  position: absolute;
+  top: 20;
+  left: 30;
+  right: 30;
+  bottom: 20;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+@media only screen and (min-width : 768px) {
+  .row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .row > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .navbar-brand {
@@ -52,6 +90,52 @@ body {
     object-position: center;
     height: 15rem;
     width: 15rem;
+}
+
+.card-img-big-left {
+    object-fit: scale-down; /* Do not scale the image */
+    object-position: center;
+    width: 100%;
+}
+
+.card-img-top {
+  object-fit: scale-down;
+  object-position: center;
+  width: 100%;
+}
+
+/*is 768 alright or set to desktops: 992*/
+@media (min-width: 768px) {
+  .card-columns {
+    column-count: 2;
+  }
+}
+@media (max-width: 768px) {
+  .card-columns {
+    column-count: 1;
+  }
+  .container {
+    padding: 10px;
+  }
+}
+
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
 }
 
 .footer-distributed{
