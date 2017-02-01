@@ -25,6 +25,15 @@ input {
   text-align: center;
 }
 
+@media only screen and (max-width: 768px) {
+  .display-3 {
+    font-size: 3em;
+  }
+  .lead {
+    font-size: 1em;
+  }
+}
+
 /*.fill {
   max-width: auto;
   max-height: 100%;
@@ -32,13 +41,17 @@ input {
 
 .fill-left-img {
   position: absolute;
-  top: 20;
-  left: 30;
-  right: 30;
-  bottom: 20;
+  top: 0;
+  left: 15;
+  right: 0;
+  bottom: 0;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+
+.btn {
+  white-space: normal;
 }
 
 @media only screen and (min-width : 768px) {
@@ -157,13 +170,9 @@ input {
 	vertical-align: top;
 }
 
-/* Footer left */
-
 .footer-distributed .footer-left{
 	width: 40%;
 }
-
-/* The company logo */
 
 .footer-distributed h3{
 	color:  #ffffff;
@@ -174,8 +183,6 @@ input {
 .footer-distributed h3 span{
 	color:  #5383d3;
 }
-
-/* Footer links */
 
 .footer-distributed .footer-links{
 	color:  #ffffff;
@@ -196,8 +203,6 @@ input {
 	font-weight: normal;
 	margin: 0;
 }
-
-/* Footer Center */
 
 .footer-distributed .footer-center{
 	width: 35%;
@@ -240,9 +245,6 @@ input {
 	text-decoration: none;;
 }
 
-
-/* Footer Right */
-
 .footer-distributed .footer-right{
 	width: 20%;
 }
@@ -284,8 +286,6 @@ input {
 	margin-bottom: 5px;
 }
 
-/* If you don't want the footer to be responsive, remove these media queries */
-
 @media (max-width: 880px) {
 
 	.footer-distributed{
@@ -305,4 +305,8 @@ input {
 		margin-left: 0;
 	}
 
+}
+
+.footer-icon {
+  padding-top: 8px;
 }
