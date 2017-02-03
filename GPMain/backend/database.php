@@ -1,6 +1,4 @@
 <?php
-require_once "MySQL_DataMapper.php";
-
 function getPDO() {
     $servername = "mysql: host=127.0.0.1;dbname=gpmain;port=3306";
     $username = "gptest";
@@ -17,17 +15,3 @@ function getPDO() {
 
     return $conn;
 }
-
-//function execQuery($inputStr, $params) {
-//    global $conn;
-//    $result = NULL;
-//
-//    if (($conn != null) || connectDB()) {
-//        $result = $conn->prepare($inputStr);
-//        $result->execute($params);
-//    } else {
-//        return NULL;
-//    }
-//
-//    return $result;
-//}
