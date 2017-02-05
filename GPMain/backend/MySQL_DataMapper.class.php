@@ -14,12 +14,29 @@ class MySQL_DataMapper
 
     public function getFoodItemsByUserID($id) // TODO
     {
-        
+        $query = "SELECT `expirydate`,`category`,`userid`,`name`,`description`,`latit`,`longit`,`amount`,
+                  `weight` ,`image`,`active`,`hidden` 
+                    FROM `itemtable`
+                    WHERE `foodid` = :id";
+        $result = NULL;
+        try {
+            $stmt = $this->pdo->prepare($query);
+
+            $stmt->execute(array(
+                ':id' => $id
+            ));
+
+            $result = $stmt->fetchAll();
+        } catch (PDOException $e) {
+            if (DEBUG) echo 'Getting auth token failed: ' . $e->getMessage();
+        }
+        $stmt = NULL;
+        return $result;
     }
 
     public function addNewFoodItem($name, $expirDate, $category, $userID,$desc, $lat, $long, $amount, $weight, $image)
     {
-        $query = "INSERT INTO itemtable (name, expirydate, category,userid,description,lat,long,amount,weight,image) 
+        $query = "INSERT INTO itemtable (name, expirydate, category,userid,description,latit,longit,amount,weight,image) 
         VALUES (:name, :expir, :cat, :uid, :desc, :lat, :long, :amount, :weight, :image)";
         $result = true;
         try {

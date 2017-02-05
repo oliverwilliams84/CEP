@@ -7,7 +7,7 @@ require_once "includes.php";
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     //Get input variables
-    $toGet = $_GET["topic"];
+    $toGet = $_GET["id"];
     $search = isset($_GET['q']) ? $_GET['q'] : "";
 
 

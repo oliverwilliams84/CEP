@@ -1,8 +1,5 @@
 <?php
 
-//TODO: update default include paths
-//TODO: between autoload and default include paths do we even need to include any files
-
 define('DEBUG', true);
 define('ROOT', dirname(__FILE__));
 
