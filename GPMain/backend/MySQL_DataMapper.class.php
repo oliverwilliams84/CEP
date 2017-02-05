@@ -84,10 +84,11 @@ class MySQL_DataMapper
         return $result;
     }
 
-    //Never call directly, simply inserts values. Use request handler
-    public function addNewUser($un,$pw,$pic,$email)
+    //Never call directly, simply inserts values. Use handler
+    public function addNewUser($un,$pw,$pic,$email,$salt)
     {
-        $query = "INSERT INTO usertable (username, password, picture, email) VALUES (:un, :pw, :pic, :email)";
+        $query = "INSERT INTO usertable (username, password, picture, email, salt) 
+                  VALUES (:un, :pw, :pic, :email, :salt)";
         $result = true;
         try {
             $stmt = $this->pdo->prepare($query);
@@ -96,6 +97,7 @@ class MySQL_DataMapper
                 ':un' => $un,
                 ':pw' => $pw,
                 ':pic' => $pic,
+                ':salt' => $salt,
                 ':email' => $email
             ));
         } catch (PDOException $e) {
@@ -174,6 +176,48 @@ class MySQL_DataMapper
     public function getPasswordByID($id)
     {
         $query = "SELECT `password`
+                    FROM `usertable`
+                    WHERE `userid` = :id";
+        $result = NULL;
+        try {
+            $stmt = $this->pdo->prepare($query);
+
+            $stmt->execute(array(
+                ':id' => $id
+            ));
+
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            if (DEBUG) echo 'Getting password failed: ' . $e->getMessage();
+        }
+        $stmt = NULL;
+        return $result;
+    }
+
+    public function getPictureByID($id)
+    {
+        $query = "SELECT `picture`
+                    FROM `usertable`
+                    WHERE `userid` = :id";
+        $result = NULL;
+        try {
+            $stmt = $this->pdo->prepare($query);
+
+            $stmt->execute(array(
+                ':id' => $id
+            ));
+
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            if (DEBUG) echo 'Getting password failed: ' . $e->getMessage();
+        }
+        $stmt = NULL;
+        return $result;
+    }
+
+    public function getEmailByID($id)
+    {
+        $query = "SELECT `email`
                     FROM `usertable`
                     WHERE `userid` = :id";
         $result = NULL;

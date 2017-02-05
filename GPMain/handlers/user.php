@@ -9,58 +9,35 @@ $database = new MySQL_DataMapper(getPDO());
 //HANDLE GET
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
-    $toEncode = (array("error" => "failed"));
-
-    //Get input variables
-    $toGet = $_GET["userid"];
-    if (is_numeric($toGet)){
-        $toEncode = ($database->getFoodItemsByUserID($toGet));
-    } else {
-        $toGet = $_GET["foodid"];
-        if (is_numeric($toGet)){
-            $toEncode = ($database->getFoodItemByID($toGet));
-        }
-    }
+    //TODO
 
     echo json_encode($toEncode);
 }
 
 //HANDLE POST
-elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST["name"];
-    $expirDate = $_POST["expiredate"];
-    $category = $_POST["category"];
-    $userID = $_POST["userid"];
-    $desc = $_POST["description"];
-    $lat = $_POST["laitutde"];
-    $long = $_POST["longitude"];
-    $amount = $_POST["amount"];
-    $weight = $_POST["weight"];
+elseif ($_SERVER["REQUEST_METHOD"] == "POST") {    // TODO : Check for UN already existing
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    $picture = $_POST["picture"];
+    $email = $_POST["email"];
+
     $imagedir = null;
 
     //Check Vars
-    if (!is_numeric($userID)){
-        die(json_encode(array("error" => "userID incorrectly defined")));
-    } elseif (!is_string($name)) {
+    if (!is_string($username)) {
         die(json_encode(array("error" => "name incorrectly defined")));
-    } elseif (!is_string($expirDate)) {
+    } elseif (!is_string($password)) {
         die(json_encode(array("error" => "expirey incorrectly defined")));
-    } elseif (!is_string($category)) {
-        die(json_encode(array("error" => "category incorrectly defined")));
-    } elseif (!is_string($desc)) {
+    } elseif (!is_string($email)) {
         die(json_encode(array("error" => "description incorrectly defined")));
-    } elseif (!is_numeric($lat)) {
-        die(json_encode(array("error" => "latitude incorrectly defined")));
-    } elseif (!is_numeric($long)) {
-        die(json_encode(array("error" => "longitude incorrectly defined")));
-    } elseif (!is_numeric($amount)) {
-        die(json_encode(array("error" => "amount incorrectly defined")));
-    } elseif (!is_numeric($weight)) {
-        die(json_encode(array("error" => "weight incorrectly defined")));
     }
 
-    if(isset($_POST["image"])) {
-        $target_dir = "images/food/";
+    $pass = hashPassword($password);
+    $password = $pass['password'];
+    $salt = $pass['salt'];
+
+    if(isset($_POST["picture"])) {
+        $target_dir = "images/user/";
         $GUID = GUIDv4();
         $imagedir = $target_dir . $GUID;
         $uploadOk = 1;
@@ -100,7 +77,7 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    if ($database->addNewFoodItem($name,$expirDate,$category,$userID,$desc,$lat,$long,$amount,$weight,$imagedir)) {
+    if ($database->addNewUser($username, $password, $imagedir, $email, $salt)) {
         $toEncode = array("success" => "topic added");
     } else {
         $toEncode = array("error" => "failed to add");

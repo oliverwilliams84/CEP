@@ -31,16 +31,6 @@ function checkAuth(){
     return false;
 }
 
-/**
- * Returns a GUIDv4 string
- *
- * Uses the best cryptographically secure method
- * for all supported pltforms with fallback to an older,
- * less secure version.
- *
- * @param bool $trim
- * @return string
- */
 function GUIDv4 ($trim = true)
 {
     // Windows
@@ -74,4 +64,17 @@ function GUIDv4 ($trim = true)
         $rbrace;
     return $guidv4;
 }
-?>
+
+function hashPassword($inPassword) {
+    $salt = random_bytes(22);
+    $options = [
+        'cost' => 11,
+        'salt' => $salt
+    ];
+
+//    $password = password_hash("rasmuslerdorf", PASSWORD_BCRYPT, $options);
+    return [
+        'salt' => $salt,
+        'password' => password_hash($inPassword, PASSWORD_BCRYPT, $options)
+    ];
+}
