@@ -3,14 +3,24 @@ header('Content-type: application/json');
 header('Access-Control-Allow-Origin: *');
 require_once "includes.php";
 
+checkAuth();
+$database = new MySQL_DataMapper(getPDO());
+
 //HANDLE GET
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
+    $toEncode = (array("error" => "failed"));
+
     //Get input variables
-    $toGet = $_GET["id"];
-    $search = isset($_GET['q']) ? $_GET['q'] : "";
-
-
+    $toGet = $_GET["userid"];
+    if (is_numeric($toGet)){
+        $toEncode = ($database->getFoodItemsByUserID($toGet));
+    } else {
+        $toGet = $_GET["foodid"];
+        if (is_numeric($toGet)){
+            $toEncode = ($database->getFoodItemByID($toGet));
+        }
+    }
 
     echo json_encode($toEncode);
 }

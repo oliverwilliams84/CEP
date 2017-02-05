@@ -12,7 +12,29 @@ class MySQL_DataMapper
         $this->pdo = $pdo;
     }
 
-    public function getFoodItemsByUserID($id) // TODO
+    public function getFoodItemsByUserID($id)
+    {
+        $query = "SELECT `expirydate`,`category`,`foodid`,`name`,`description`,`latit`,`longit`,`amount`,
+                  `weight` ,`image`,`active`,`hidden` 
+                    FROM `itemtable`
+                    WHERE `userid` = :id";
+        $result = NULL;
+        try {
+            $stmt = $this->pdo->prepare($query);
+
+            $stmt->execute(array(
+                ':id' => $id
+            ));
+
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            if (DEBUG) echo 'Getting auth token failed: ' . $e->getMessage();
+        }
+        $stmt = NULL;
+        return $result;
+    }
+
+    public function getFoodItemByID($id)
     {
         $query = "SELECT `expirydate`,`category`,`userid`,`name`,`description`,`latit`,`longit`,`amount`,
                   `weight` ,`image`,`active`,`hidden` 
@@ -26,7 +48,7 @@ class MySQL_DataMapper
                 ':id' => $id
             ));
 
-            $result = $stmt->fetchAll();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             if (DEBUG) echo 'Getting auth token failed: ' . $e->getMessage();
         }
@@ -120,7 +142,7 @@ class MySQL_DataMapper
                 ':id' => $id
             ));
 
-            $result = $stmt->fetchAll();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             if (DEBUG) echo 'Get user messages failed: ' . $e->getMessage();
         }
@@ -141,7 +163,7 @@ class MySQL_DataMapper
                 ':id' => $id
             ));
 
-            $result = $stmt->fetchAll();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             if (DEBUG) echo 'Getting auth token failed: ' . $e->getMessage();
         }
@@ -162,7 +184,7 @@ class MySQL_DataMapper
                 ':id' => $id
             ));
 
-            $result = $stmt->fetchAll();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             if (DEBUG) echo 'Getting password failed: ' . $e->getMessage();
         }
@@ -244,7 +266,7 @@ class MySQL_DataMapper
                 ':id' => $id
             ));
 
-            $result = $stmt->fetchAll();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             if (DEBUG) echo 'Getting requests by ID failed: ' . $e->getMessage();
         }

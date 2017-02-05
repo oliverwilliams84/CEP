@@ -19,13 +19,14 @@ function checkAuth(){
         foreach ($array as $item) {
             if (!$item["isExpired"]){
                 if($item["authToken"] == $authtoken){
-
+                    return true;
                 }
             }
         }
         unset($item);
-
-    } else {
-        //TODO : Redirect to login
     }
+
+    header('Location: '. LOGIN);
+
+    return false;
 }

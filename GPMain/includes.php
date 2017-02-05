@@ -3,7 +3,7 @@
 define('DEBUG', true);
 define('ROOT', dirname(__FILE__));
 
-define('LOGIN', "localhost:8080/");
+define('LOGIN', "localhost:8080/GroupProject/index.html");
 
 require_once (ROOT."/backend/database.php");
 
