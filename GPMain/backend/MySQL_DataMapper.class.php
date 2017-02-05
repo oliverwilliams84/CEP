@@ -130,7 +130,7 @@ class MySQL_DataMapper
 
     public function getAuthTokenByID($id)
     {
-        $query = "SELECT `authToken`, `expirDate`
+        $query = "SELECT `authToken`, IF(`expirDate` < NOW(),TRUE,FALSE) as isExpired
                     FROM `authtable`
                     WHERE `userid` = :id";
         $result = NULL;

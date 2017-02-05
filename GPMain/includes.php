@@ -3,6 +3,8 @@
 define('DEBUG', true);
 define('ROOT', dirname(__FILE__));
 
+define('LOGIN', "localhost:8080/");
+
 require_once (ROOT."/backend/database.php");
 
 // Named autoloader

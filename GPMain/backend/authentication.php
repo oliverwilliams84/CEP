@@ -14,6 +14,16 @@ function checkAuth(){
 
         $datamapper = new MySQL_DataMapper(getPDO());
 
+        $array = $datamapper->getAuthTokenByID($id);
+
+        foreach ($array as $item) {
+            if (!$item["isExpired"]){
+                if($item["authToken"] == $authtoken){
+
+                }
+            }
+        }
+        unset($item);
 
     } else {
         //TODO : Redirect to login
